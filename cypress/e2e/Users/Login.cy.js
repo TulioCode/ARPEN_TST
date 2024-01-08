@@ -12,7 +12,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         }
       })
       cy.visit('/');
-      cy.get('.nav-item > .btn').click()
+      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
       cy.get('#password').type(password);
@@ -31,7 +31,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         }
       })
       cy.visit('/');
-      cy.get('.nav-item > .btn').click()
+      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
 
@@ -57,7 +57,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
           }
         })
         cy.visit('/')
-        cy.get('.nav-item > .btn').click()
+        cy.get('#botaoLogin').click()
       })
 
       it('Erros Quiz 01 - Data Aniversário',function (){
@@ -174,7 +174,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
           }
         })
         cy.visit('/')
-        cy.get('.nav-item > .btn').click()
+        cy.get('#botaoLogin').click()
       })
 
       it('Erros Quiz 02 - Acerto em todas as questões para definição de senha', function (){
