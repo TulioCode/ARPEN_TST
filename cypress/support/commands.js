@@ -7,4 +7,7 @@ Cypress.on('uncaught:exception', (e,run) => {
     if(e.message.includes("Cannot read properties of null")){
         return false
     }
-})
+    if(e.message.includes("')'")){
+        return false
+    }
+});

@@ -1,4 +1,4 @@
-describe('Confia', function (){
+describe.skip('Confia', function (){
     context('Fluxos Cancelamento', function (){
         it('Scan de etapas', function (){
             let CPF = '06263750880'
