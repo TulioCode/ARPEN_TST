@@ -23,13 +23,15 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
   });
   //DONE
   context('Valdações Iniciais CPF ', function (){
+    beforeEach(function (){
+        cy.visit('/');
+        cy.get('#botaoLogin').click()
+    })
 
     it('Cadastro Menor de 16', function (){
       //CPF TST: 44784709878
       let CPF = '44784709878'
 
-      cy.visit('/');
-      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
 
@@ -40,8 +42,6 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
     it('Cadastro PeP - CPF Bolsonaro', function (){
       let CPF = '45317828791'
 
-      cy.visit('/');
-      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
 
@@ -52,8 +52,6 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
     it('Cadastro CPF inválido', function (){
       let CPF = '12345678998'
 
-      cy.visit('/');
-      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
       cy.get('#kc-content-wrapper > div > span').should('be.visible').and('contain.text', 'Nome de usuário inválido.')
@@ -62,8 +60,6 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
     it('CPF com registro de obito', function (){
       let CPF = '61582093849'
 
-      cy.visit('/');
-      cy.get('#botaoLogin').click()
       cy.get('#username').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
       cy.get('.instruction').should('be.visible').and('contain.text', 'Seu acesso está bloqueado e, por conta disso, não pode usar sua Autenticação Eletrônica do Registro Civil – IdRC. Por favor, vá até um cartório de pessoas naturais para regularizar sua situação e liberar seu IdRC.')
