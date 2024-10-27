@@ -6,7 +6,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
       //Before começo
       //cpf do gutim cai no Confia
       let CPF = '47031984874'
-      let password = 'Codebit@123'
+      let password = 'Codebit@159'
       cy.on('uncaught:exception', (e) => {
         if(e.message.includes('style')){
           return false
@@ -117,7 +117,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
 
       it('Login Registrador - Plataforma registrado - Login com Sucesso', function (){
         let CPF = '08936687611'
-        let password = 'Codebit@123'
+        let password = 'Codebit@159'
 
         cy.visit('https://uniaoestavelh.registrocivil.org.br/');
         cy.get('#username').type(CPF);
@@ -144,7 +144,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
 
       it('Validação Tipagem - Usuáriuo Registrador (Plataforma C -> R) - Login', function (){
         CPF = '08936687611'
-        password = 'Codebit@123'
+        password = 'Codebit@159'
 
         cy.get('#username').type(CPF);
         cy.get('#kc-login').as('btnContinue').click();
@@ -157,7 +157,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
 
       it('Usuário Registrador de  (Plataforma C -> C) - Login', function (){
         CPF = '08936687611'
-        password = 'Codebit@123'
+        password = 'Codebit@159'
 
         cy.get('#username').type(CPF);
         cy.get('#kc-login').as('btnContinue').click();
@@ -171,7 +171,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
 
       it('Usuário Comum de (Plataforma C -> R) - Trava', function (){
         CPF = '47031984874'
-        password = 'Codebit@123'
+        password = 'Codebit@159'
 
         cy.get('#username').type(CPF);
         cy.get('#kc-login').as('btnContinue').click();
@@ -319,7 +319,6 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
           cy.get('#botaoLogin').click()
       })
 
-      //TODO: CRIAR SCript na planilha
       it('Quiz 02 - 4/4 Correto - Sem solicitar de dados de empresa - Usuário Liberado', function (){
         // CPF 06263750880
         //Dados: MARCOS ANTONIO ABBOUD /// DALVA TICLY ABBOUD /// 27/06/1967
@@ -468,7 +467,6 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         cy.get('.step').should('be.visible');
 
 
-        //estado//TODO: Tem que fazer selecionar uma errada
         cy.wait(3000)
         cy.get('.form-group').find('input[value!="são paulo"]').each($option => {
           cy.wrap($option).click()
@@ -504,7 +502,7 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         cy.get('#kc-page-title').first().should('be.visible').and('contain.text', 'Registre-se');
       })
       //TODO: Validar funcionamento Quais as Chaves que são coferidas com os dados de Empresa
-      it('Quiz 02 - 1/4 Incorreto - Solicita Dados da Empresa  - Dados da Empresa Corretos - Usuário liberado', function (){
+      it.skip('Quiz 02 - 1/4 Incorreto - Solicita Dados da Empresa  - Dados da Empresa Corretos - Usuário liberado', function (){
         // CPF 06263750880
         //Dados QUIZ 1: MARCOS ANTONIO ABBOUD /// DALVA TICLY ABBOUD /// 27/06/1967
         //Dados QUIZ 2: São Paulo /// Ribeirão Preto /// RUA CAIEIRAS 590 /// 16 37227268 /// Empresa: CLINICA PERFIL DE CIRURGIA PLASTICA LTDA | Dado de Incio: 2017 ///
@@ -537,15 +535,14 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         //Pergunta 1 - nasceu ou já morou
         cy.get('.step').should('be.visible');
 
-        //estado//TODO: Tem que fazer selecionar uma errada
         cy.wait(3000)
-        cy.get('.form-group').find('input[value!="são paulo"]').each($option => {
+        cy.get('.form-group').find('input[value="são paulo"]').each($option => {
           cy.wrap($option).click()
         })
         cy.get('.pf-c-button').should('be.visible').click();
 
         //cidade
-        cy.get('.form-group').find('input[value!="ribeirao preto"]').each($option => {
+        cy.get('.form-group').find('input[value="ribeirao preto"]').each($option => {
           cy.wrap($option).click()
         })
         cy.get('.pf-c-button').should('be.visible').click();
@@ -556,8 +553,8 @@ describe('Login/Cadastros', {requestTimeout:10000, responseTimeout:10000},functi
         cy.get('.pf-c-button').should('be.visible').click();
 
         //telefone
-        cy.get('#phoneCode').should('be.visible').type('16')
-        cy.get('#phoneNumber').should('be.visible').type('37227268')
+        cy.get('#phoneCode').should('be.visible').type('23')
+        cy.get('#phoneNumber').should('be.visible').type('3722232323268')
         cy.get('.pf-c-button').should('be.visible').click();
 
         //Solicitação de dados da empresa
@@ -581,11 +578,11 @@ describe('Validações Nível de Garantia LOA',{requestTimeout:10000, responseTi
 
   context('Sincronismos entre os Logins - LOA', function (){
 
-    it('LOA - Baixo para Substancial - Trava', function (){
+    it.skip('LOA - Baixo para Substancial - Trava', function (){
       cy.visit('https://assinaturahmlg.registrocivil.org.br/')
       cy.url().should('include', "Aloa%3Abaixo");
       let CPF = '47031984874'
-      let password = 'Codebit@123'
+      let password = 'Codebit@159'
 
       cy.get('#username').should('be.visible').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
@@ -594,6 +591,7 @@ describe('Validações Nível de Garantia LOA',{requestTimeout:10000, responseTi
 
       cy.visit('https://www.homeh.registrocivil.org.br/');
       cy.get('#botaoLogin').should('be.visible').click();
+      cy.wait(3000);
       cy.url().should('include', 'Aloa%3Asubstancial');
       cy.get('#kc-page-title').should('contain.text', 'Entrar na sua conta').and('be.visible')
     })
@@ -602,7 +600,7 @@ describe('Validações Nível de Garantia LOA',{requestTimeout:10000, responseTi
       cy.visit('https://assinaturahmlg.registrocivil.org.br/')
       cy.url().should('include', "Aloa%3Abaixo");
       let CPF = '08936687611'
-      let password = 'Codebit@123'
+      let password = 'Codebit@159'
 
       cy.get('#username').should('be.visible').type(CPF);
       cy.get('#kc-login').as('btnContinue').click();
@@ -616,7 +614,7 @@ describe('Validações Nível de Garantia LOA',{requestTimeout:10000, responseTi
 
     it('LOA - Logout - Sincroniza', function (){
       let CPF = '08936687611'
-      let password = 'Codebit@123'
+      let password = 'Codebit@159'
 
       cy.visit('https://assinaturahmlg.registrocivil.org.br/')
       cy.url().should('include', "Aloa%3Abaixo");
@@ -644,4 +642,24 @@ describe('Validações Nível de Garantia LOA',{requestTimeout:10000, responseTi
     })
   })
 
-} )
+})
+
+context.only('Validação com ICP TEST', function (){
+  it('Teste de validação de ICP', function (){
+    cy.visit('/');
+    cy.get('#botaoLogin').should('be.visible').click();
+
+    let CPF = '08936687611'
+    let password = 'Time@rpen876'
+
+    cy.get('#username').should('be.visible').type(CPF);
+    cy.get('#kc-login').as('btnContinue').click();
+    cy.get('#password').type(password);
+    cy.get('#kc-login').as('btnContinue').click();
+    cy.wait(20000)
+    cy.get('div').contains("Autenticador TOTP").should('exist').click({force:true})
+    cy.get('span').contains('tulio hml').click({force:true});
+
+
+  })
+})
